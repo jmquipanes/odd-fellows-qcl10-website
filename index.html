@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Odd Fellows Quezon City Lodge 10</title>
+    <meta
+      name="description"
+      content="Odd Fellows Quezon City Lodge 10 — community, service, fellowship in Quezon City."
+    />
+    <meta property="og:title" content="Odd Fellows Quezon City Lodge 10" />
+    <meta
+      property="og:description"
+      content="Community, service, and fellowship in Quezon City."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="assets/favicon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html">
+          <img
+            src="assets/logo.png"
+            alt="Odd Fellows Quezon City Lodge 10 logo"
+            class="logo"
+          />
+          <span class="brand-text">Odd Fellows Quezon City Lodge 10</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="events.html">Events</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav">
+          Menu
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1>Welcome to Odd Fellows Quezon City Lodge 10</h1>
+          <p class="lead">
+            Fellowship, service, and mutual aid for members and community.
+          </p>
+          <p>
+            <a class="btn" href="about.html">Learn More</a>
+            <a class="btn ghost" href="events.html">Upcoming Events</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="features container">
+        <article>
+          <h2>Our Mission</h2>
+          <p>
+            To promote friendship, love, and truth through community service and
+            mutual support.
+          </p>
+        </article>
+        <article>
+          <h2>Meetings</h2>
+          <p>
+            Regular lodge meetings every second Saturday. Visitors welcome by
+            appointment.
+          </p>
+        </article>
+        <article>
+          <h2>Get Involved</h2>
+          <p>
+            Volunteer opportunities, community outreach, and fellowship events
+            throughout the year.
+          </p>
+        </article>
+      </section>
+
+      <section class="cta container">
+        <h2>Join Us</h2>
+        <p>
+          Interested in membership or attending a meeting? Reach out and we’ll
+          connect you with an officer.
+        </p>
+        <a class="btn" href="contact.html">Contact an Officer</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Odd Fellows Quezon City Lodge 10</strong>
+          <p>Quezon City, Metro Manila</p>
+        </div>
+        <div>
+          <nav aria-label="Footer navigation">
+            <a href="about.html">About</a>
+            <a href="events.html">Events</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <p>© <span id="year"></span> Odd Fellows Lodge 10</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // small helpers: year and mobile nav
+      document.getElementById("year").textContent = new Date().getFullYear();
+      const toggle = document.querySelector(".nav-toggle");
+      const nav = document.querySelector(".main-nav");
+      toggle.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!expanded));
+        nav.classList.toggle("open");
+      });
+    </script>
+  </body>
+</html>

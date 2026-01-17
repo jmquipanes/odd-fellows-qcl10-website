@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Gallery Odd Fellows Quezon City Lodge 10</title>
+    <meta
+      name="description"
+      content="Photo gallery of Odd Fellows Quezon City Lodge 10 events and activities."
+    />
+    <link rel="icon" href="assets/favicon.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* small gallery-specific styles */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 0.5rem;
+      }
+      figure {
+        margin: 0;
+        background: #fff;
+        border: 1px solid #eef6f6;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      figure img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        display: block;
+      }
+      figcaption {
+        padding: 0.5rem;
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html">
+          <img
+            src="assets/logo.png"
+            alt="Odd Fellows Quezon City Lodge 10 logo"
+            class="logo"
+          />
+          <span class="brand-text">Odd Fellows Quezon City Lodge 10</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="events.html">Events</a>
+          <a href="gallery.html" aria-current="page">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav">
+          Menu
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+      <article class="page">
+        <header>
+          <h1>Gallery</h1>
+          <p class="lead">
+            Photos from lodge meetings, outreach activities, and community
+            events. Click any image to view a larger version.
+          </p>
+        </header>
+
+        <section>
+          <div class="gallery-grid" aria-live="polite">
+            <figure>
+              <img
+                src="assets/gallery-01.jpg"
+                alt="Members distributing care packages at community center"
+                loading="lazy"
+              />
+              <figcaption>Community outreach distribution</figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src="assets/gallery-02.jpg"
+                alt="Scholarship awardees receiving certificates"
+                loading="lazy"
+              />
+              <figcaption>Scholarship awards ceremony</figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src="assets/gallery-03.jpg"
+                alt="Lodge meeting in session with officers at the front"
+                loading="lazy"
+              />
+              <figcaption>Monthly lodge meeting</figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src="assets/gallery-04.jpg"
+                alt="Volunteers preparing relief packs"
+                loading="lazy"
+              />
+              <figcaption>Relief pack preparation</figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src="assets/gallery-05.jpg"
+                alt="Group photo after a community clean up"
+                loading="lazy"
+              />
+              <figcaption>Community clean up</figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src="assets/gallery-06.jpg"
+                alt="Officers and members at a fellowship dinner"
+                loading="lazy"
+              />
+              <figcaption>Fellowship dinner</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section>
+          <h2>Share Your Photos</h2>
+          <p>
+            If you have photos from lodge events you would like to share, please
+            send them to gallery@lodge10.ph with a short caption and permission
+            to publish.
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Odd Fellows Quezon City Lodge 10</strong>
+          <p>Quezon City, Metro Manila</p>
+        </div>
+        <div>
+          <nav aria-label="Footer navigation">
+            <a href="about.html">About</a>
+            <a href="events.html">Events</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <p>© <span id="year"></span> Odd Fellows Lodge 10</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+      const toggle = document.querySelector(".nav-toggle");
+      const nav = document.querySelector(".main-nav");
+      toggle.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!expanded));
+        nav.classList.toggle("open");
+      });
+    </script>
+  </body>
+</html>

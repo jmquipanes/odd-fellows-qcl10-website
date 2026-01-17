@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>About Odd Fellows Quezon City Lodge 10</title>
+    <meta
+      name="description"
+      content="About Odd Fellows Quezon City Lodge 10 — mission, history, officers, and meeting information."
+    />
+    <meta
+      property="og:title"
+      content="About Odd Fellows Quezon City Lodge 10"
+    />
+    <meta
+      property="og:description"
+      content="Mission, history, officers, and meeting information."
+    />
+    <link rel="icon" href="assets/favicon.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html">
+          <img
+            src="assets/logo.png"
+            alt="Odd Fellows Quezon City Lodge 10 logo"
+            class="logo"
+          />
+          <span class="brand-text">Odd Fellows Quezon City Lodge 10</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html" aria-current="page">About</a>
+          <a href="events.html">Events</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav">
+          Menu
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+      <article class="page">
+        <header>
+          <h1>About Odd Fellows Quezon City Lodge 10</h1>
+          <p class="lead">
+            A community of fellowship, service, and mutual support serving
+            Quezon City and nearby communities.
+          </p>
+        </header>
+
+        <section>
+          <h2>Our Mission</h2>
+          <p>
+            We promote friendship, love, and truth through community service,
+            mutual aid, and personal development. Our lodge supports members and
+            neighbors through charitable projects, educational programs, and
+            fellowship events.
+          </p>
+        </section>
+
+        <section>
+          <h2>Our History</h2>
+          <p>
+            Odd Fellows Quezon City Lodge 10 was founded to provide a local
+            chapter for members committed to civic service and mutual support.
+            Over the years we have organized community outreach, scholarship
+            assistance, and disaster relief efforts while maintaining a strong
+            tradition of fraternal fellowship.
+          </p>
+        </section>
+
+        <section>
+          <h2>Officers and Contacts</h2>
+          <p>
+            Below is the current list of officers. For officer contact details,
+            please use the contact page.
+          </p>
+          <ul>
+            <li><strong>Worthy Master</strong> — Brother Juan Dela Cruz</li>
+            <li><strong>Vice Master</strong> — Brother Ramon Santos</li>
+            <li><strong>Secretary</strong> — Sister Maria Lopez</li>
+            <li><strong>Treasurer</strong> — Brother Ernesto Reyes</li>
+            <li><strong>Chaplain</strong> — Brother Antonio Cruz</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Meetings and Membership</h2>
+          <p>
+            Regular lodge meetings are held every second Saturday of the month
+            at 3:00 PM. Visitors are welcome by appointment. Membership
+            information and requirements are available from the Secretary.
+          </p>
+          <dl>
+            <dt>Meeting Location</dt>
+            <dd>Odd Fellows Hall, Quezon City</dd>
+            <dt>Meeting Time</dt>
+            <dd>Second Saturday, 3:00 PM</dd>
+            <dt>Membership Inquiries</dt>
+            <dd>
+              Contact the Secretary via the Contact page or email
+              officers@lodge10.ph
+            </dd>
+          </dl>
+        </section>
+
+        <section>
+          <h2>Values and Programs</h2>
+          <p>We focus on three core values:</p>
+          <ul>
+            <li>
+              <strong>Friendship</strong> — building strong personal bonds among
+              members.
+            </li>
+            <li>
+              <strong>Love</strong> — supporting members and the community
+              through acts of service.
+            </li>
+            <li>
+              <strong>Truth</strong> — promoting integrity, education, and
+              transparency in our work.
+            </li>
+          </ul>
+          <p>
+            Programs include community outreach, scholarship assistance, health
+            drives, and disaster relief coordination.
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Odd Fellows Quezon City Lodge 10</strong>
+          <p>Quezon City, Metro Manila</p>
+        </div>
+        <div>
+          <nav aria-label="Footer navigation">
+            <a href="about.html">About</a>
+            <a href="events.html">Events</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <p>© <span id="year"></span> Odd Fellows Lodge 10</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+      const toggle = document.querySelector(".nav-toggle");
+      const nav = document.querySelector(".main-nav");
+      toggle.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!expanded));
+        nav.classList.toggle("open");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contact Odd Fellows Quezon City Lodge 10</title>
+    <meta
+      name="description"
+      content="Contact Odd Fellows Quezon City Lodge 10 for membership, events, and inquiries."
+    />
+    <link rel="icon" href="assets/favicon.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 1rem;
+      }
+      @media (max-width: 900px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .contact-card {
+        background: #fff;
+        border: 1px solid #eef6f6;
+        padding: 1rem;
+        border-radius: 8px;
+      }
+      label {
+        display: block;
+        margin-top: 0.75rem;
+        font-weight: 600;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.6rem;
+        border: 1px solid #dfeff0;
+        border-radius: 6px;
+        margin-top: 0.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html">
+          <img
+            src="assets/logo.png"
+            alt="Odd Fellows Quezon City Lodge 10 logo"
+            class="logo"
+          />
+          <span class="brand-text">Odd Fellows Quezon City Lodge 10</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="events.html">Events</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html" aria-current="page">Contact</a>
+        </nav>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav">
+          Menu
+        </button>
+      </div>
+    </header>
+
+    <main class="container">
+      <article class="page">
+        <header>
+          <h1>Contact Us</h1>
+          <p class="lead">
+            Questions about membership, events, or volunteering? Use the form or
+            the contact details on the right.
+          </p>
+        </header>
+
+        <section class="contact-grid">
+          <div class="contact-card">
+            <h2>Send a Message</h2>
+            <form
+              method="POST"
+              action="https://formspree.io/f/your-id"
+              aria-label="Contact form"
+            >
+              <label for="name">Name</label>
+              <input id="name" name="name" required />
+
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" required />
+
+              <label for="subject">Subject</label>
+              <input id="subject" name="subject" required />
+
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+              ></textarea>
+
+              <button type="submit" class="btn" style="margin-top: 0.75rem">
+                Send Message
+              </button>
+            </form>
+
+            <p style="margin-top: 1rem; color: var(--muted)">
+              If you prefer, email
+              <a href="mailto:officers@lodge10.ph">officers@lodge10.ph</a> or
+              call the lodge secretary.
+            </p>
+          </div>
+
+          <aside class="contact-card" aria-labelledby="contact-info">
+            <h2 id="contact-info">Contact Information</h2>
+            <p>
+              <strong>Address</strong><br />Odd Fellows Hall, Quezon City, Metro
+              Manila
+            </p>
+            <p>
+              <strong>Email</strong><br /><a href="mailto:officers@lodge10.ph"
+                >officers@lodge10.ph</a
+              >
+            </p>
+            <p><strong>Phone</strong><br />(+63) 2 1234 5678</p>
+
+            <h3 style="margin-top: 1rem">Office Hours</h3>
+            <p>Monday to Friday 9:00 AM to 5:00 PM</p>
+
+            <h3 style="margin-top: 1rem">Emergency Contact</h3>
+            <p>
+              For urgent lodge matters after hours, contact the Secretary on the
+              number above and leave a message.
+            </p>
+          </aside>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Odd Fellows Quezon City Lodge 10</strong>
+          <p>Quezon City, Metro Manila</p>
+        </div>
+        <div>
+          <nav aria-label="Footer navigation">
+            <a href="about.html">About</a>
+            <a href="events.html">Events</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <p>© <span id="year"></span> Odd Fellows Lodge 10</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+      const toggle = document.querySelector(".nav-toggle");
+      const nav = document.querySelector(".main-nav");
+      toggle.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!expanded));
+        nav.classList.toggle("open");
+      });
+    </script>
+  </body>
+</html>
