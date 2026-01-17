@@ -14,5 +14,6 @@ jobs:
       - name: Deploy to Neocities
         uses: bcomnes/deploy-to-neocities@v2
         with:
-          api_key: ${{ secrets.NEOCITIES_API_KEY }}
-          publish_dir: "." # publish the repo root; change if your files live in a subfolder
+          api_token: ${{ secrets.NEOCITIES_API_KEY }} # secret name can stay the same
+          dist_dir: "." # publish repo root; change if files are in a folder
+          cleanup: true # optional: remove files on Neocities that were deleted locally
