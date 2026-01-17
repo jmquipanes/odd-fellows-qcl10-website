@@ -11,9 +11,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Prepare clean deploy directory
+        run: |
+          rm -rf deploy
+          mkdir deploy
+          # Copy only the site files and assets you want published.
+          # Adjust the patterns below to match your repo layout.
+          rsync -av --progress \
+            --include='index.html' \
+            --include='*.html' \
+            --include='assets/***' \
+            --include='styles.css' \
+            --include='assets/**' \
+            --exclude='*' \
+            ./ deploy/
+          # Optional: copy other files you want published
+          # cp README.md deploy/   # usually not needed on the live site
+
+      - name: Show deploy folder contents for debugging
+        run: |
+          echo "=== deploy folder tree ==="
+          ls -la deploy
+          echo "=== file sizes ==="
+          du -sh deploy/* || true
+
       - name: Deploy to Neocities
         uses: bcomnes/deploy-to-neocities@v2
         with:
-          api_token: ${{ secrets.NEOCITIES_API_KEY }} # secret name can stay the same
-          dist_dir: "." # publish repo root; change if files are in a folder
-          cleanup: true # optional: remove files on Neocities that were deleted locally
+          api_token: ${{ secrets.NEOCITIES_API_KEY }}
+          dist_dir: "deploy"
+          cleanup: true
