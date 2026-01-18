@@ -97,6 +97,13 @@ main {
   margin: 0 0 0.5rem;
   font-size: clamp(1.5rem, 3vw, 2.25rem);
 }
+.home-featured-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 .lead {
   color: var(--muted);
   margin-bottom: 1rem;
