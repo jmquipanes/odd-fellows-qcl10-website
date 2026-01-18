@@ -11,7 +11,153 @@
     <link rel="icon" href="assets/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
     <style>
-      /* small gallery-specific styles */
+      /* Carousel styles */
+      .carousel {
+        position: relative;
+        max-width: 90%;
+        margin: 2rem auto;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      .carousel-wrapper {
+        position: relative;
+        overflow: hidden;
+      }
+      .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+      .carousel-slide {
+        min-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #f9f9f9;
+      }
+      .carousel-slide img {
+        max-width: 100%;
+        max-height: 600px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        padding: 1rem;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+      }
+      .carousel-slide img:hover {
+        opacity: 0.9;
+      }
+      /* Lightbox/Modal styles */
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox.active {
+        display: flex;
+      }
+      .lightbox-content {
+        position: relative;
+        max-width: 95vw;
+        max-height: 95vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox-image {
+        width: auto;
+        height: auto;
+        max-width: 95vw;
+        max-height: 95vh;
+        object-fit: contain;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(255, 255, 255, 0.3);
+        color: white;
+        border: none;
+        font-size: 2rem;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox-close:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .carousel-slide figcaption {
+        padding: 1rem;
+        text-align: center;
+        background: #f9f9f9;
+        color: var(--muted);
+      }
+      .carousel-buttons {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+      .carousel-btn {
+        pointer-events: all;
+        background: rgba(15, 107, 107, 0.8);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        font-size: 1.2rem;
+        border-radius: 4px;
+        margin: 0 0.5rem;
+        transition: background-color 0.2s ease;
+      }
+      .carousel-btn:hover {
+        background: rgba(15, 107, 107, 1);
+      }
+      .carousel-indicators {
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 0.5rem;
+        z-index: 10;
+      }
+      .indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        border: none;
+        padding: 0;
+      }
+      .indicator.active {
+        background: rgba(255, 255, 255, 1);
+      }
+      .indicator:hover {
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      /* small gallery-specific styles for legacy grid */
       .gallery-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -72,68 +218,33 @@
         </header>
 
         <section>
-          <div class="gallery-grid" aria-live="polite">
-            <figure>
-              <img
-                src="assets/gallery-01.jpg"
-                alt="Members distributing care packages at community center"
-                loading="lazy"
-              />
-              <figcaption>Community outreach distribution</figcaption>
-            </figure>
-
-            <figure>
-              <img
-                src="assets/gallery-02.jpg"
-                alt="Scholarship awardees receiving certificates"
-                loading="lazy"
-              />
-              <figcaption>Scholarship awards ceremony</figcaption>
-            </figure>
-
-            <figure>
-              <img
-                src="assets/gallery-03.jpg"
-                alt="Lodge meeting in session with officers at the front"
-                loading="lazy"
-              />
-              <figcaption>Monthly lodge meeting</figcaption>
-            </figure>
-
-            <figure>
-              <img
-                src="assets/gallery-04.jpg"
-                alt="Volunteers preparing relief packs"
-                loading="lazy"
-              />
-              <figcaption>Relief pack preparation</figcaption>
-            </figure>
-
-            <figure>
-              <img
-                src="assets/gallery-05.jpg"
-                alt="Group photo after a community clean up"
-                loading="lazy"
-              />
-              <figcaption>Community clean up</figcaption>
-            </figure>
-
-            <figure>
-              <img
-                src="assets/gallery-06.jpg"
-                alt="Officers and members at a fellowship dinner"
-                loading="lazy"
-              />
-              <figcaption>Fellowship dinner</figcaption>
-            </figure>
+          <div class="carousel" id="carousel">
+            <div class="carousel-wrapper">
+              <div class="carousel-track" id="carouselTrack">
+                <!-- Images will be dynamically loaded here -->
+              </div>
+              <div class="carousel-buttons">
+                <button class="carousel-btn" id="prevBtn">&larr;</button>
+                <button class="carousel-btn" id="nextBtn">&rarr;</button>
+              </div>
+              <div class="carousel-indicators" id="indicators"></div>
+            </div>
           </div>
         </section>
+
+        <!-- Lightbox Modal -->
+        <div class="lightbox" id="lightbox">
+          <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img id="lightboxImage" class="lightbox-image" src="" alt="Full size image">
+          </div>
+        </div>
 
         <section>
           <h2>Share Your Photos</h2>
           <p>
             If you have photos from lodge events you would like to share, please
-            send them to gallery@lodge10.ph with a short caption and permission
+            send them to ioof.qc@gmail.com with a short caption and permission
             to publish.
           </p>
         </section>
@@ -154,7 +265,7 @@
           </nav>
         </div>
         <div>
-          <p>© <span id="year"></span> Odd Fellows Lodge 10</p>
+          <p>© <span id="year"></span> Odd Fellows Quezon City Lodge 10</p>
           <p style="font-size: 0.9rem; color: var(--muted); margin: 0.5rem 0 0 0;">Designed by Marlon Quipanes</p>
         </div>
       </div>
@@ -169,6 +280,153 @@
         toggle.setAttribute("aria-expanded", String(!expanded));
         nav.classList.toggle("open");
       });
+
+      // Load gallery images from manifest
+      async function loadGallery() {
+        try {
+          const response = await fetch("assets/gallery/manifest.json");
+          const data = await response.json();
+          const carouselTrack = document.getElementById("carouselTrack");
+          
+          // Clear existing content
+          carouselTrack.innerHTML = "";
+          
+          // Create slides from manifest
+          data.images.forEach((imageName) => {
+            const figure = document.createElement("figure");
+            figure.classList.add("carousel-slide");
+            
+            const img = document.createElement("img");
+            img.src = `assets/gallery/${imageName}`;
+            img.alt = `Gallery image from Odd Fellows Quezon City Lodge 10`;
+            img.loading = "lazy";
+            
+            // Add click handler to open lightbox
+            img.addEventListener("click", () => {
+              openLightbox(img.src);
+            });
+            
+            figure.appendChild(img);
+            carouselTrack.appendChild(figure);
+          });
+          
+          // Initialize carousel and lightbox
+          initCarousel();
+          initLightbox();
+        } catch (error) {
+          console.error("Error loading gallery:", error);
+        }
+      }
+
+      // Lightbox functionality
+      function initLightbox() {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxClose = document.getElementById("lightboxClose");
+        
+        lightboxClose.addEventListener("click", closeLightbox);
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox) closeLightbox();
+        });
+        
+        // Close on escape key
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeLightbox();
+        });
+      }
+
+      function openLightbox(imageSrc) {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+        lightboxImage.src = imageSrc;
+        lightbox.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        const lightbox = document.getElementById("lightbox");
+        lightbox.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      function initCarousel() {
+        const carousel = document.getElementById("carousel");
+        const carouselTrack = document.getElementById("carouselTrack");
+        const slides = document.querySelectorAll(".carousel-slide");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const indicatorsContainer = document.getElementById("indicators");
+        
+        let currentSlide = 0;
+        let autoScrollInterval;
+        const autoScrollDelay = 4000; // 4 seconds
+
+        // Reset carousel track to start position
+        carouselTrack.style.transform = "translateX(0)";
+
+        // Create indicators
+        indicatorsContainer.innerHTML = "";
+        slides.forEach((_, index) => {
+          const indicator = document.createElement("button");
+          indicator.classList.add("indicator");
+          if (index === 0) indicator.classList.add("active");
+          indicator.addEventListener("click", () => goToSlide(index));
+          indicatorsContainer.appendChild(indicator);
+        });
+
+        const indicators = document.querySelectorAll(".indicator");
+
+        function updateCarousel() {
+          carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+          indicators.forEach((ind, index) => {
+            ind.classList.toggle("active", index === currentSlide);
+          });
+        }
+
+        function goToSlide(index) {
+          currentSlide = index;
+          updateCarousel();
+          resetAutoScroll();
+        }
+
+        function nextSlide() {
+          currentSlide = (currentSlide + 1) % slides.length;
+          updateCarousel();
+          resetAutoScroll();
+        }
+
+        function prevSlide() {
+          currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+          updateCarousel();
+          resetAutoScroll();
+        }
+
+        function startAutoScroll() {
+          autoScrollInterval = setInterval(nextSlide, autoScrollDelay);
+        }
+
+        function stopAutoScroll() {
+          clearInterval(autoScrollInterval);
+        }
+
+        function resetAutoScroll() {
+          stopAutoScroll();
+          startAutoScroll();
+        }
+
+        // Event listeners
+        nextBtn.addEventListener("click", nextSlide);
+        prevBtn.addEventListener("click", prevSlide);
+        
+        // Pause on hover
+        carousel.addEventListener("mouseenter", stopAutoScroll);
+        carousel.addEventListener("mouseleave", startAutoScroll);
+
+        // Start auto scroll
+        startAutoScroll();
+      }
+
+      // Load gallery on page load
+      loadGallery();
     </script>
   </body>
 </html>
