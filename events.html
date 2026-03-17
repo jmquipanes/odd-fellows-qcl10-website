@@ -10,6 +10,92 @@
     />
     <link rel="icon" href="assets/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      .events-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+      .event-figure {
+        background: #fff;
+        border: 1px solid #eef6f6;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .event-figure:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      .event-figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .event-figure figcaption {
+        display: none;
+      }
+      .event-figure img {
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+      }
+      .event-figure img:hover {
+        opacity: 0.9;
+      }
+      /* Lightbox/Modal styles */
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox.active {
+        display: flex;
+      }
+      .lightbox-content {
+        position: relative;
+        max-width: 95vw;
+        max-height: 95vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox-image {
+        width: auto;
+        height: auto;
+        max-width: 95vw;
+        max-height: 95vh;
+        object-fit: contain;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(255, 255, 255, 0.3);
+        color: white;
+        border: none;
+        font-size: 2rem;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox-close:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+    </style>
   </head>
   <body>
     <header class="site-header">
@@ -50,20 +136,35 @@
 
           <ul class="events-list">
             <li>
-              <time datetime="2026-02-21">February 21, 2026</time>
-              <h3>Regular Lodge Meeting</h3>
+              <time datetime="2026-03-21">March 21, 2026</time>
+              <h3>Installation of Officers for Odd Year 2026</h3>
               <p>
-                Regular lodge meeting for members at Tempus Place II, Matalino St.
-                Meeting starts at 2:00 PM. Visitors welcome by appointment.
+                Join us for the Installation of Officers ceremony as we welcome our new leadership for Odd Year 2026. A special occasion celebrating our lodge's dedication to service and fellowship.
               </p>
+              <div class="events-gallery">
+                <figure class="event-figure">
+                  <img src="assets/events/1.jpg" alt="Invitation to Officers Installation">
+                </figure>
+                <figure class="event-figure">
+                  <img src="assets/events/2.jpg" alt="Installation of Officers">
+                </figure>
+              </div>
             </li>
           </ul>
         </section>
 
+        <!-- Lightbox Modal -->
+        <div class="lightbox" id="lightbox">
+          <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img id="lightboxImage" class="lightbox-image" src="" alt="Full size image">
+          </div>
+        </div>
+
         <section>
           <h2>Recurring Activities</h2>
           <ul>
-            <li><strong>Monthly Meeting</strong> — Third Saturday, 2:00 PM</li>
+            <li><strong>Monthly Meeting</strong> — Third Saturday, 2:00 PM at Tempus Place II, Matalino St.</li>
           </ul>
         </section>
 
@@ -107,6 +208,46 @@
         toggle.setAttribute("aria-expanded", String(!expanded));
         nav.classList.toggle("open");
       });
+
+      // Lightbox functionality
+      function initLightbox() {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxClose = document.getElementById("lightboxClose");
+        const images = document.querySelectorAll(".event-figure img");
+
+        images.forEach(img => {
+          img.addEventListener("click", () => {
+            openLightbox(img.src);
+          });
+        });
+
+        lightboxClose.addEventListener("click", closeLightbox);
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox) closeLightbox();
+        });
+
+        // Close on escape key
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeLightbox();
+        });
+      }
+
+      function openLightbox(imageSrc) {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+        lightboxImage.src = imageSrc;
+        lightbox.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        const lightbox = document.getElementById("lightbox");
+        lightbox.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      // Initialize lightbox on page load
+      initLightbox();
     </script>
   </body>
 </html>
