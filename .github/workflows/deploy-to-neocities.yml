@@ -20,6 +20,7 @@ jobs:
           rsync -av --progress \
             --include='index.html' \
             --include='*.html' \
+            --include='*.js' \
             --include='assets/***' \
             --include='styles.css' \
             --include='assets/**' \
