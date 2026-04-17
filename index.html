@@ -18,33 +18,12 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="index.html">
-          <img
-            src="assets/qcl10logo.jpg"
-            alt="Odd Fellows Quezon City Lodge 10 logo"
-            class="logo"
-          />
-          <span class="brand-text">Odd Fellows Quezon City Lodge 10</span>
-        </a>
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="index.html" aria-current="page">Home</a>
-          <a href="about.html">About</a>
-          <a href="events.html">Events</a>
-          <a href="gallery.html">Gallery</a>
-          <a href="contact.html">Contact</a>
-        </nav>
-        <button class="nav-toggle" aria-expanded="false" aria-controls="nav">
-          Menu
-        </button>
-      </div>
-    </header>
+    <div id="header-placeholder"></div>
 
     <main>
       <section class="hero">
         <div class="container">
-          <h1>Welcome to Odd Fellows Quezon City Lodge 10</h1>
+          <h1>Welcome to Odd Fellows Quezon City Lodge No. 10</h1>
           <p class="lead">
             Fellowship, service, and mutual aid for members and community.
           </p>
@@ -52,7 +31,11 @@
             <a class="btn" href="about.html">Learn More</a>
             <a class="btn ghost" href="events.html">Upcoming Events</a>
           </p>
-          <img src="assets/home-page.jpg" alt="Odd Fellows Quezon City Lodge 10" class="home-featured-image">
+          <img
+            src="assets/home-page.jpg"
+            alt="Odd Fellows Quezon City Lodge 10"
+            class="home-featured-image"
+          />
         </div>
       </section>
 
@@ -90,36 +73,8 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <div>
-          <strong>Odd Fellows Quezon City Lodge 10</strong>
-          <p>Quezon City, Metro Manila</p>
-        </div>
-        <div>
-          <nav aria-label="Footer navigation">
-            <a href="about.html">About</a>
-            <a href="events.html">Events</a>
-            <a href="contact.html">Contact</a>
-          </nav>
-        </div>
-        <div>
-          <p>© <span id="year"></span> Odd Fellows Quezon City Lodge 10</p>
-          <p style="font-size: 0.9rem; color: var(--muted); margin: 0.5rem 0 0 0;">Designed by Marlon Quipanes</p>
-        </div>
-      </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
-    <script>
-      // small helpers: year and mobile nav
-      document.getElementById("year").textContent = new Date().getFullYear();
-      const toggle = document.querySelector(".nav-toggle");
-      const nav = document.querySelector(".main-nav");
-      toggle.addEventListener("click", () => {
-        const expanded = toggle.getAttribute("aria-expanded") === "true";
-        toggle.setAttribute("aria-expanded", String(!expanded));
-        nav.classList.toggle("open");
-      });
-    </script>
+    <script src="shared.js"></script>
   </body>
 </html>
