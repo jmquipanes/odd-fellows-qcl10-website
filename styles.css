@@ -38,7 +38,7 @@ main {
   padding: 1rem;
 }
 .header-container {
-  max-width: var(--header-container);
+  max-width: max-content;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -379,6 +379,51 @@ main {
   font-size: 0.9rem;
   color: var(--accent);
   font-weight: 600;
+}
+
+/* Page Infobox (like Wikipedia) */
+.page-infobox {
+  float: right;
+  margin: 0 0 1.5rem 1.5rem;
+  width: 280px;
+  border: 1px solid #e6efef;
+  border-radius: 8px;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.page-infobox img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* FAQ Content */
+.faq-content {
+  width: 100%;
+  margin: 0;
+}
+
+.faq-item {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eef6f6;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-item p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.faq-item p:first-child {
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
 }
 
 /* Responsive */
