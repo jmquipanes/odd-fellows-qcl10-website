@@ -48,8 +48,26 @@ function initializeNavToggle() {
       const expanded = toggle.getAttribute("aria-expanded") === "true";
       toggle.setAttribute("aria-expanded", String(!expanded));
       nav.classList.toggle("open");
+      if (!nav.classList.contains("open")) {
+        document.querySelectorAll(".dropdown.open").forEach((dropdown) => {
+          dropdown.classList.remove("open");
+        });
+      }
     });
   }
+
+  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+  dropdownToggles.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      if (window.innerWidth <= 800) {
+        event.preventDefault();
+        const dropdown = button.closest(".dropdown");
+        if (dropdown) {
+          dropdown.classList.toggle("open");
+        }
+      }
+    });
+  });
 }
 
 // Load header and footer when DOM is ready

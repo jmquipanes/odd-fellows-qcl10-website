@@ -430,16 +430,80 @@ main {
 
 /* Responsive */
 @media (max-width: 800px) {
+  body {
+    padding-top: 140px;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .brand {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .brand-text {
+    font-size: 0.72rem;
+    line-height: 1.2;
+    white-space: normal;
+    max-width: 100%;
+  }
+
   .main-nav {
     display: none;
+    width: 100%;
   }
+
   .nav-toggle {
     display: inline-block;
   }
+
   .main-nav.open {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
+    width: 100%;
+    background: #fff;
+    padding: 0.75rem 0;
+    border-top: 1px solid #e6efef;
+  }
+
+  .main-nav a,
+  .dropdown-toggle {
+    width: 100%;
+    text-align: left;
+    padding-left: 1rem;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static;
+    border: 1px solid #e6efef;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    padding: 0.5rem 0;
+    margin: 0.5rem 0 0 0;
+    border-radius: 8px;
+    display: none;
+  }
+
+  .dropdown-menu a,
+  .submenu-section a {
+    padding: 0.75rem 1.25rem;
+  }
+
+  .dropdown.open .dropdown-menu {
+    display: block !important;
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: none;
   }
 }
